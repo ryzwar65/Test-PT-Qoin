@@ -1,0 +1,10 @@
+var express = require('express');
+var routes = express.Router();
+var authController = require('../controllers/authController');
+var loginValidators = require('../middlewares/validators/loginValidator');
+var registerValidator = require('../middlewares/validators/registerValidator');
+routes.post('/login', loginValidators, authController.login);
+routes.post('/register', registerValidator, authController.register);
+routes.get('/token', authController.refreshToken);
+routes.post('/logout', authController.logout);
+module.exports = routes;
